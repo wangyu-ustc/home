@@ -286,8 +286,10 @@ export function Publications() {
                 Publications
             </div> */}
             <StyledDiv>
-                <div className='left' style={{paddingBottom: '200px',
-            paddingTop: '40px'}}>
+                <div className='left' style={{
+                    paddingBottom: '200px',
+                    paddingTop: '40px'
+                }}>
                     {/* <br /> */}
                     {/* <div style={{
                         display: 'flex',
@@ -295,7 +297,7 @@ export function Publications() {
                         width: '20%'
                     }}>
                     </div> */}
-                    <div style={{width:'70%'}}>
+                    <div style={{ width: '70%' }}>
                         <div>
                             {
                                 Array.from({ length: publicationItemList.length }, (item, index) => index).filter(

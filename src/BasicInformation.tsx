@@ -189,7 +189,7 @@ export function BasicInformation() {
                             <img
                                 alt="My picture"
                                 className="logo"
-                                src={require("./about4.jpg")}
+                                src={require("./assets/about4.jpg")}
                                 width="150"
                                 height="125"
                             />
@@ -201,7 +201,7 @@ export function BasicInformation() {
                                     </h3>
                                     <h4>
                                         <a href='https://yuwang.site/CV.pdf'>CV</a>
-                                        <a>{"\t"}</a>
+                                        &nbsp;&nbsp;
                                         <a href='https://scholar.google.com/citations?hl=en&user=n1pDIggAAAAJ'>Google Scholar</a>
                                     </h4>
                                 </div>

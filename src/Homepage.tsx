@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 import { Publications } from './Publications';
 import { BasicInformation } from './BasicInformation';
+import { Experiences } from './experiences';
 
 const StyledDiv = styled.div`
     flex-grow: 1;
@@ -64,24 +65,13 @@ function TabPanel(props: TabPanelProps) {
             style={{ width: '100%' }}
             {...other}
         >
-            {value === index &&
-                index === 1 ? (
-                <>
-                    <Publications />
-                </>
-            )
-                : (
-                    index === 0 ? (
-                        <>
-                            <BasicInformation />
-                        </>
-                    ) :
-                        (
-                            <Box sx={{ p: 3 }}>
+
+            {value === 0 && <BasicInformation/>}
+            {value === 1 && <Publications />} 
+            {value === 2 && <Experiences />}
+            {/* {value === 3 && <Box sx={{ p: 3 }}>
                                 <Typography>{children}</Typography>
-                            </Box>
-                        )
-                )}
+                            </Box>} */}
         </div>
     );
 }
@@ -124,24 +114,13 @@ export default function VerticalTabs() {
                 <Tab label="Basic Information" {...a11yProps(0)} />
                 <Tab label="Publications" {...a11yProps(1)} />
                 <Tab label="Experiences" {...a11yProps(2)} />
-                <Tab label="Item Four" {...a11yProps(3)} />
+                {/* <Tab label="Item Four" {...a11yProps(3)} />
                 <Tab label="Item Five" {...a11yProps(4)} />
                 <Tab label="Item Six" {...a11yProps(5)} />
-                <Tab label="Item Seven" {...a11yProps(6)} />
+                <Tab label="Item Seven" {...a11yProps(6)} /> */}
             </Tabs>
             <TabPanel value={value} index={0} >
-                I am a student from I am a student from
-                I am a student from I am a student from
-                I am a student from I am a student from
-                I am a student from I am a student from
-                I am a student from I am a student from
-                I am a student from I am a student from
-                I am a student from I am a student from
-                I am a student from I am a student from
-                I am a student from I am a student from
-                I am a student from I am a student from
-                I am a student from I am a student from
-                I am a student from I am a student from
+                Item One
             </TabPanel>
             <TabPanel value={value} index={1}>
                 Item Two
@@ -149,7 +128,7 @@ export default function VerticalTabs() {
             <TabPanel value={value} index={2}>
                 Item Three
             </TabPanel>
-            <TabPanel value={value} index={3}>
+            {/* <TabPanel value={value} index={3}>
                 Item Four
             </TabPanel>
             <TabPanel value={value} index={4}>
@@ -160,7 +139,7 @@ export default function VerticalTabs() {
             </TabPanel>
             <TabPanel value={value} index={6}>
                 Item Seven
-            </TabPanel>
+            </TabPanel> */}
         </Box>
     );
 }
