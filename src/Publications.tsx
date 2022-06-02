@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import { List, Button, Avatar } from '@mui/material';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -11,11 +11,6 @@ import Typography from '@mui/material/Typography';
 import Slider, { SliderThumb } from '@mui/material/Slider';
 import Skeleton from '@mui/material/Skeleton';
 import CircularProgress from '@mui/material/CircularProgress';
-// import { setInterval } from 'timers/promises';
-// import { useWith } from 'ramda';
-
-// import NestedList from './nested-list';
-// import CheckboxList from './nested-list';
 
 interface pubProps {
     //    publicationProp:
@@ -43,7 +38,7 @@ const StyledDiv = styled.div`
         position: sticky;
     }
 
-    &> .left {
+    &> .right {
     width: 300px;
     min-width: 300px;
     max-height: 100%;
@@ -51,18 +46,21 @@ const StyledDiv = styled.div`
     overflow-y: auto;
     }
 
-    @media only screen and (max-width: 640px) {
-    &> .left {
+    @media only screen and (max-width: 1000px) {
+    &> .right {
         display: none;
     }
     }
 
-    &> .right {
+    &> .left {
     max-height: 100%;
     height: 100%;
     padding-bottom: 100px;
+    padding-top: 30px;
     flex-grow: 1;
     overflow-y: auto;
+    display: flex;
+    justify-content: center
     }
 `;
 
@@ -279,17 +277,57 @@ export function Publications() {
             display: 'flex',
             flexDirection: 'column'
         }}>
-            <div className='up' style={{
+            {/* <div className='up' style={{
                 display: 'flex',
                 justifyContent: 'center',
-                backgroundColor: 'grey',
+                backgroundColor: 'forestgreen',
                 fontSize: '0.7cm'
             }}>
                 Publications
-            </div>
+            </div> */}
             <StyledDiv>
+                <div className='left' style={{paddingBottom: '200px',
+            paddingTop: '40px'}}>
+                    {/* <br /> */}
+                    {/* <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        width: '20%'
+                    }}>
+                    </div> */}
+                    <div style={{width:'70%'}}>
+                        <div>
+                            {
+                                Array.from({ length: publicationItemList.length }, (item, index) => index).filter(
+                                    (idx) => {
+                                        const endYearItem = marks.find((item) => (item.value === range[1]))
+                                        const endYear = !endYearItem ? 2023 : endYearItem.year
 
-                <div className="left">
+                                        const beginYearItem = marks.find((item) => (item.value === range[0]))
+                                        const beginYear = !beginYearItem ? 2021 : beginYearItem.year
+
+                                        return (publicationItemList[idx].year <= endYear && publicationItemList[idx].year >= beginYear)
+                                            && (authorChecked.indexOf(authorship(publicationItemList[idx].authors)) !== -1)
+                                            && (statusChecked.indexOf(publicationItemList[idx].status) !== -1)
+                                    }
+                                ).map((idx) => (
+                                    <div key={idx} className='board-row'>
+                                        <PublicationItem {...publicationItemList[idx]} />
+                                    </div>))
+                            }
+
+                        </div>
+                        <Box sx={{ width: "60%" }}>
+                            <Skeleton width={'60%'} />
+                            <Skeleton width={'100%'} />
+                            <Skeleton width={'30%'} />
+                        </Box>
+                    </div>
+
+
+                </div>
+                <div className="right">
+                    <br></br>
                     <br></br>
                     <div style={{ display: 'flex', justifyContent: 'center', height: 200 }}>
                         <Box sx={{ width: '90%', height: '80%' }}>
@@ -390,41 +428,7 @@ export function Publications() {
                     </div>
 
                 </div>
-                <div className='right'>
-                    <br />
-                    <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                    }}>
-                    </div>
-                    <div>
-                        {
-                            Array.from({ length: publicationItemList.length }, (item, index) => index).filter(
-                                (idx) => {
-                                    const endYearItem = marks.find((item) => (item.value === range[1]))
-                                    const endYear = !endYearItem ? 2023 : endYearItem.year
 
-                                    const beginYearItem = marks.find((item) => (item.value === range[0]))
-                                    const beginYear = !beginYearItem ? 2021 : beginYearItem.year
-
-                                    return (publicationItemList[idx].year <= endYear && publicationItemList[idx].year >= beginYear)
-                                        && (authorChecked.indexOf(authorship(publicationItemList[idx].authors)) !== -1)
-                                        && (statusChecked.indexOf(publicationItemList[idx].status) !== -1)
-                                }
-                            ).map((idx) => (
-                                <div key={idx} className='board-row'>
-                                    <PublicationItem {...publicationItemList[idx]} />
-                                </div>))
-                        }
-
-                    </div>
-                    <Box sx={{ width: "60%" }}>
-                        <Skeleton width={'60%'} />
-                        <Skeleton width={'100%'} />
-                        <Skeleton width={'30%'} />
-                    </Box>
-
-                </div>
             </StyledDiv>
         </div>
     )
